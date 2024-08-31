@@ -1,0 +1,87 @@
+<%- include("header") -%>
+<style>
+  body {
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  .container {
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgb(220, 143, 255), -3px -3px 5px rgb(230, 177, 255);
+    width: 50%;
+  }
+
+  .container h2 {
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .btn {
+    margin-top: 20px;
+    padding: 5px auto;
+    background-color: rgb(113, 41, 147);
+  }
+
+  .search-heading {
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(91, 0, 134);
+    font-weight: bold;
+  }
+
+  .shorten-url {
+    box-shadow: 3px 3px 5px grey, -3px -3px 5px grey;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: rgb(61, 0, 90);
+    color: rgba(200, 255, 132, 0.784);
+  }
+  .shorten-url a{
+    color: rgb(255, 249, 166);
+  }
+
+  i:hover {
+    color: rgb(22, 120, 150);
+  }
+
+  @media only screen and (max-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+  }
+</style>
+<div class="container my-5">
+  <h2 class="search-heading">Enter Url To Shorten</h2>
+
+  <form class="urlform mb-5" action="/" method="post">
+    <div class="mb-3">
+      <input type="text" class="form-control" name="url">
+    </div>
+    <button type="submit" class="btn btn-primary">Shorten</button>
+  </form>
+<% if(shortenUrl!==null){ %>
+  <div class="shorten-url" >
+    <h3>Shorten Url : 
+      <a id="url" href=<%=shortenUrl %>><%=shortenUrl %></a>&nbsp&nbsp 
+      <i onclick="copy()" class="fas fa-copy"></i>
+    </h3>
+  </div>
+<% } %>
+
+</div>
+
+<script>
+  const copy = () => {
+    var copyText = document.getElementById("url");
+
+    /* Select the text field */
+
+    /* Copy the text inside the text field */
+    navigator.clipboard.writeText(copyText.innerHTML);
+
+    /* Alert the copied text */
+    alert("Copied the text: " + copyText.innerHTML);
+  }
+</script>
+
+<%- include("footer") -%>
